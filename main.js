@@ -1,3 +1,4 @@
+! function (){
 function addToList(item) {
     var out = document.getElementById("holder");
     var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
@@ -8,15 +9,18 @@ function addToList(item) {
         out.scrollTop = out.scrollHeight - out.clientHeight;
 }
 
+var lastMessageId
 $.get("http://tiy-orl-proxy.herokuapp.com/messages")
     .then(function(response) {
         var items = response.messages
         items.forEach(addToList)
+        var lastMessages = response.messages[response.messages.length - 1]
+        lastMessageId = lastMessage.id
     })
+
 var out = document.getElementById("holder");
 setInterval(function moreMessages() {
-    $('ul').html("")
-    $.get("http://tiy-orl-proxy.herokuapp.com/messages")
+    $.get(`http://tiy-orl-proxy.herokuapp.com/messages?min=${lastMessageId}`)
         .then(function(response) {
             var items = response.messages
             items.forEach(addToList)
@@ -60,3 +64,4 @@ function getSavedValue(v) {
     }
     return localStorage.getItem(v);
 }
+}()
