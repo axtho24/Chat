@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+</head>
+
+<body>
+    <p>Chat It Up</p>
+    <div id="holder">
+    <ul id="allItems"></ul>
+    </div>
+    <input id="input1" onkeyup="saveValue(this)" placeholder="username">
+    <form method="POST" action="http://tiy-orl-proxy.herokuapp.com/messages">
+        <label>
+     <input id="input2" name="message[username]" placeholder="type you message">
+        </label>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
